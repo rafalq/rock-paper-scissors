@@ -3,9 +3,63 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Rock Paper Scissors</title>
+    <title>Rock Paper Scissors Game</title>
     <link rel="stylesheet" href="styles.css" />
     <script src="script.js" defer></script>
   </head>
-  <body></body>
+  <body>
+    <div class="game-container">
+      <h1>Rock Paper Scissors</h1>
+      <p class="subtitle">Choose your weapon!</p>
+
+      <div class="choices">
+        <button class="choice-btn" onclick="playGame('rock')" title="Rock">
+          ✊
+        </button>
+        <button class="choice-btn" onclick="playGame('paper')" title="Paper">
+          ✋
+        </button>
+        <button
+          class="choice-btn"
+          onclick="playGame('scissors')"
+          title="Scissors"
+        >
+          ✌️
+        </button>
+      </div>
+
+      <div class="result-display" id="resultDisplay">
+        <div class="result-emoji" id="resultEmoji"></div>
+        <div class="result-message" id="resultMessage">Make your choice!</div>
+        <div class="result-details" id="resultDetails"></div>
+        <div class="result-explanation" id="resultExplanation"></div>
+      </div>
+
+      <div class="scoreboard">
+        <div class="score-item">
+          <div class="score-label">Player</div>
+          <div class="score-value" id="playerScore">0</div>
+        </div>
+        <div class="score-item">
+          <div class="score-label">Computer</div>
+          <div class="score-value" id="computerScore">0</div>
+        </div>
+        <div class="score-item">
+          <div class="score-label">Draws</div>
+          <div class="score-value" id="drawScore">0</div>
+        </div>
+      </div>
+
+      <button class="reset-btn" onclick="resetGame()">Reset Scores</button>
+
+      <div class="rules">
+        <h3>Official Rules:</h3>
+        <ul>
+          <li>Rock crushes Scissors</li>
+          <li>Scissors cuts Paper</li>
+          <li>Paper covers Rock</li>
+        </ul>
+      </div>
+    </div>
+  </body>
 </html>
