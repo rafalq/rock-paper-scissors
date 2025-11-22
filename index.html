@@ -10,19 +10,32 @@
   <body>
     <div class="game-container">
       <h1>Rock Paper Scissors</h1>
-      <p class="subtitle">Choose your weapon!</p>
+      <p class="subtitle">Best of 3 Rounds - First to win stops the game!</p>
+
+      <div class="round-counter" id="roundCounter">Round 1 of 3</div>
 
       <div class="choices">
-        <button class="choice-btn" onclick="playGame('rock')" title="Rock">
+        <button
+          class="choice-btn"
+          onclick="playGame('rock')"
+          title="Rock"
+          id="rockBtn"
+        >
           ✊
         </button>
-        <button class="choice-btn" onclick="playGame('paper')" title="Paper">
+        <button
+          class="choice-btn"
+          onclick="playGame('paper')"
+          title="Paper"
+          id="paperBtn"
+        >
           ✋
         </button>
         <button
           class="choice-btn"
           onclick="playGame('scissors')"
           title="Scissors"
+          id="scissorsBtn"
         >
           ✌️
         </button>
@@ -35,13 +48,20 @@
         <div class="result-explanation" id="resultExplanation"></div>
       </div>
 
+      <div id="finalResult" class="hidden"></div>
+
+      <div class="round-history" id="roundHistory" style="display: none">
+        <h3>Round History:</h3>
+        <div id="historyList"></div>
+      </div>
+
       <div class="scoreboard">
         <div class="score-item">
-          <div class="score-label">Player</div>
+          <div class="score-label">Player Wins</div>
           <div class="score-value" id="playerScore">0</div>
         </div>
         <div class="score-item">
-          <div class="score-label">Computer</div>
+          <div class="score-label">Computer Wins</div>
           <div class="score-value" id="computerScore">0</div>
         </div>
         <div class="score-item">
@@ -50,14 +70,17 @@
         </div>
       </div>
 
-      <button class="reset-btn" onclick="resetGame()">Reset Scores</button>
+      <button class="reset-btn" onclick="resetGame()">New Game</button>
 
       <div class="rules">
-        <h3>Official Rules:</h3>
+        <h3>Game Rules:</h3>
         <ul>
+          <li>Play up to 3 rounds</li>
           <li>Rock crushes Scissors</li>
           <li>Scissors cuts Paper</li>
           <li>Paper covers Rock</li>
+          <li><strong>BONUS:</strong> Game stops if you win!</li>
+          <li><strong>BONUS:</strong> Computer changes guess each time</li>
         </ul>
       </div>
     </div>

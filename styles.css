@@ -6,7 +6,6 @@
 
 body {
   font-family: "Arial", sans-serif;
-  background: linear-gradient(135deg, #cacfe4 0%, #9d96a3 100%);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -37,6 +36,17 @@ h1 {
   font-size: 0.9em;
 }
 
+.round-counter {
+  text-align: center;
+  font-size: 1.2em;
+  color: #667eea;
+  font-weight: bold;
+  margin-bottom: 20px;
+  padding: 10px;
+  background: #f0f0ff;
+  border-radius: 10px;
+}
+
 .choices {
   display: flex;
   justify-content: space-around;
@@ -59,14 +69,19 @@ h1 {
   justify-content: center;
 }
 
-.choice-btn:hover {
+.choice-btn:hover:not(:disabled) {
   transform: translateY(-5px);
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
   border-color: #667eea;
 }
 
-.choice-btn:active {
+.choice-btn:active:not(:disabled) {
   transform: translateY(0);
+}
+
+.choice-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .scoreboard {
@@ -97,7 +112,7 @@ h1 {
 .result-display {
   text-align: center;
   margin: 20px 0;
-  min-height: 80px;
+  min-height: 120px;
 }
 
 .result-message {
@@ -120,6 +135,19 @@ h1 {
 .result-emoji {
   font-size: 3em;
   margin: 10px 0;
+}
+
+.final-result {
+  background: #f0f0ff;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 20px 0;
+  border: 3px solid #667eea;
+}
+
+.final-result h2 {
+  color: #667eea;
+  margin-bottom: 10px;
 }
 
 .reset-btn {
@@ -159,4 +187,29 @@ h1 {
 
 .rules li {
   margin: 5px 0;
+}
+
+.round-history {
+  margin: 20px 0;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 10px;
+}
+
+.round-history h3 {
+  color: #333;
+  margin-bottom: 10px;
+  font-size: 1em;
+}
+
+.history-item {
+  padding: 8px;
+  margin: 5px 0;
+  background: white;
+  border-radius: 5px;
+  font-size: 0.9em;
+}
+
+.hidden {
+  display: none;
 }
