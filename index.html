@@ -10,9 +10,9 @@
   <body>
     <div class="game-container">
       <h1>Rock Paper Scissors</h1>
-      <p class="subtitle">Best of 3 Rounds - First to win stops the game!</p>
+      <p class="subtitle">Play 5 rounds - Your choices are stored!</p>
 
-      <div class="round-counter" id="roundCounter">Round 1 of 3</div>
+      <div class="round-counter" id="roundCounter">Round 1 of 5</div>
 
       <div class="choices">
         <button
@@ -49,6 +49,7 @@
       </div>
 
       <div id="finalResult" class="hidden"></div>
+      <div id="userGuessesDisplay"></div>
 
       <div class="round-history" id="roundHistory" style="display: none">
         <h3>Round History:</h3>
@@ -79,8 +80,8 @@
           <li>Rock crushes Scissors</li>
           <li>Scissors cuts Paper</li>
           <li>Paper covers Rock</li>
-          <li><strong>BONUS:</strong> Game stops if you win!</li>
-          <li><strong>BONUS:</strong> Computer changes guess each time</li>
+          <li><strong>NEW:</strong> All your guesses are stored!</li>
+          <li>Your guesses are returned to you at the end</li>
         </ul>
       </div>
     </div>

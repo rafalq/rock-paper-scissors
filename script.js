@@ -2,10 +2,14 @@ let playerScore = 0;
 let computerScore = 0;
 let drawScore = 0;
 let currentRound = 1;
-let maxRounds = 3;
+let maxRounds = 5;
 let gameActive = true;
 let roundHistory = [];
 let previousComputerChoice = null;
+
+let userGuesses = [];
+let computerGuesses = [];
+let roundResults = [];
 
 function getComputerChoice() {
   const choices = ["rock", "paper", "scissors"];
@@ -129,6 +133,39 @@ function enableButtons() {
   document.getElementById("scissorsBtn").disabled = false;
 }
 
+function displayUserGuesses() {
+  const displayDiv = document.getElementById("userGuessesDisplay");
+  displayDiv.className = "user-guesses-section";
+
+  const guessesWithEmojis = userGuesses.map((guess, index) => {
+    return {
+      round: index + 1,
+      choice: guess,
+      emoji: getChoiceEmoji(guess),
+    };
+  });
+
+  // Using array.forEach() to build the list
+  let guessesList = "";
+  guessesWithEmojis.forEach((item) => {
+    guessesList += `
+            <div class="guess-item">
+              <span class="guess-emoji">${item.emoji}</span>
+              <span>Round ${
+                item.round
+              }: You chose <strong>${item.choice.toUpperCase()}</strong></span>
+            </div>
+          `;
+  });
+
+  displayDiv.innerHTML = `
+          <h3>📊 Your Guesses Throughout The Game</h3>
+          <div class="guesses-list">
+            ${guessesList}
+          </div>
+        `;
+}
+
 function showFinalResult() {
   const finalResult = document.getElementById("finalResult");
   finalResult.className = "final-result";
@@ -148,14 +185,25 @@ function showFinalResult() {
           <p style="margin-top: 10px; font-size: 1.1em; text-align: center;">
             Final Score - You: ${playerScore} | Computer: ${computerScore} | Draws: ${drawScore}
           </p>
+          <p style="margin-top: 10px; color: #667eea; font-weight: bold; text-align: center;">
+            You played ${userGuesses.length} rounds total!
+          </p>
         `;
+
+  displayUserGuesses();
 }
 
 function playGame(playerChoice) {
   if (!gameActive) return;
 
+  userGuesses.push(playerChoice);
+
   const computerChoice = getComputerChoice();
+  computerGuesses.push(computerChoice);
+
   const winner = determineWinner(playerChoice, computerChoice);
+
+  roundResults.push(winner);
 
   if (winner === "player") {
     playerScore++;
@@ -168,13 +216,6 @@ function playGame(playerChoice) {
   updateDisplay(playerChoice, computerChoice, winner);
   updateScores();
   addToHistory(currentRound, playerChoice, computerChoice, winner);
-
-  if (winner === "player") {
-    gameActive = false;
-    disableButtons();
-    showFinalResult();
-    return;
-  }
 
   if (currentRound >= maxRounds) {
     gameActive = false;
@@ -195,6 +236,10 @@ function resetGame() {
   previousComputerChoice = null;
   roundHistory = [];
 
+  userGuesses = [];
+  computerGuesses = [];
+  roundResults = [];
+
   updateScores();
   updateRoundCounter();
   enableButtons();
@@ -206,6 +251,10 @@ function resetGame() {
   document.getElementById("resultExplanation").textContent = "";
   document.getElementById("finalResult").innerHTML = "";
   document.getElementById("finalResult").classList.remove("final-result");
+  document.getElementById("userGuessesDisplay").innerHTML = "";
+  document
+    .getElementById("userGuessesDisplay")
+    .classList.remove("user-guesses-section");
   document.getElementById("historyList").innerHTML = "";
   document.getElementById("roundHistory").style.display = "none";
 }
