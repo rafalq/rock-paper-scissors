@@ -145,8 +145,8 @@ function displayUserGuesses() {
     };
   });
 
-  // Using array.forEach() to build the list
   let guessesList = "";
+
   guessesWithEmojis.forEach((item) => {
     guessesList += `
             <div class="guess-item">
